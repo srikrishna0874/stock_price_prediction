@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17991479558",
+    "project_id": "stock-price-prediction-74e2b",
+    "storage_bucket": "stock-price-prediction-74e2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17991479558:android:f440b769b2a92d3ceb6e87",
+        "android_client_info": {
+          "package_name": "com.example.stock_price_prediction"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEgAy2E3OjjeNQbFHm5etYF0DPDhITAmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
