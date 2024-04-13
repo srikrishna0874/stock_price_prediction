@@ -197,7 +197,8 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 0.37,
+                height: MediaQuery.of(context).size.height * 0.4,
+                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -207,7 +208,76 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
                     ),
                   ],
                 ),
-                child: Center(child: Text("/* Twitter related UI here....*/")),
+                child: Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurStyle: BlurStyle.outer,
+                            blurRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        "RECENT TWEETS AND NEWS ABOUT ${widget.searchResultMap['ticker']} STOCK",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    for (String i in widget.searchResultMap['RECENT_TWEETS'])
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5),
+                        child: Text(
+                          '    $i',
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.5,
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      blurStyle: BlurStyle.outer,
+                      blurRadius: 5,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "SENTIMENT ANALYSIS FOR ${widget.searchResultMap['ticker']} STOCK",
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Image.network(widget.searchResultMap['PREDICTED_IMAGES']
+                        ['SENTIMENT_CHART']),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 30,
@@ -269,14 +339,52 @@ class _SearchResultsPageState extends State<SearchResultsPage> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
+                height: 100,
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: widget.searchResultMap['OVERALL_RESULT'] ==
+                          'Overall Positive'
+                      ? Color.fromRGBO(40, 167, 69, 1)
+                      : Color.fromRGBO(220, 53, 69, 1),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      widget.searchResultMap['OVERALL_RESULT'],
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "OVERALL NEWS POLARITY",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
                 height: 110,
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Color.fromRGBO(0, 123, 255, 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Text(
-                  "According to the ML Predictions & Sentiment Analysis of the Tweets, a FALL in AAPL stock is expected => SELL",
+                child: Text(
+                  "According to the ML Predictions & Sentiment Analysis of the Market News, a ${widget.searchResultMap['IDEA']} in AAPL stock is expected => ${widget.searchResultMap['DECISION']}",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
